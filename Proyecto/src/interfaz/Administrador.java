@@ -21,6 +21,7 @@ public class Administrador extends javax.swing.JFrame {
    public static char[] password; 
    public static long pos = 0, linex=0;
     Moonglade tipoFuente;
+    //COMENTARIO OTRA VEZ EQUISDE
     
     public Administrador() {
         initComponents();
