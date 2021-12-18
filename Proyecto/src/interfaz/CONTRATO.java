@@ -5,19 +5,92 @@
  */
 package interfaz;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+import static interfaz.Cliente.yusername;
+import static interfaz.Cliente.ylicense;
+
 /**
  *
  * @author Pc
  */
-public class CONTRATO extends javax.swing.JFrame {
 
-    /**
-     * Creates new form CONTRATO
-     */
+public class CONTRATO extends javax.swing.JFrame {
+    public static FileWriter flwriter = null; 
+   public static String name;
+   public static String age;
+   public static String license;
+   public static String username;
+   public static String ncadena="";
+   public static String auto;
+
     public CONTRATO() {
+        
         initComponents();
         this.setLocationRelativeTo(null);
     }
+    public void asignar(){
+      ncadena="";
+      ncadena+=name + ",";
+      ncadena+=age+ ",";
+      ncadena+=ylicense + ",";
+      ncadena+=yusername + ",";
+      ncadena+=auto;      
+    }
+    public void registroArchivo(){
+       String xname ="", xlicense="", xage="", xusername="", xpassword=""; 
+        try {  //crea el flujo para escribir en el archivo
+          File flwriter = new File("C:\\BD\\EQ05.txt");
+          Scanner leer_archivo = null;
+          leer_archivo = new Scanner(flwriter);
+          while(leer_archivo.hasNextLine()){
+             String Linea_archivo = leer_archivo.nextLine();
+             Scanner delimitar = new Scanner(Linea_archivo);
+             delimitar.useDelimiter("\\s*,\\s*");
+             xname = delimitar.next();
+             xage = delimitar.next();
+             xlicense = delimitar.next();
+             xusername = delimitar.next();
+             xpassword = delimitar.next();
+             if(yusername.equals(xusername) && ylicense.equals(xlicense)){
+                name=xname;
+                age=xage;
+                 break;
+             }
+          }
+       } catch (IOException e) {
+            e.printStackTrace();
+         } finally {  // consolida el cierre de archivo con transacciones
+              if (flwriter != null) {
+                 try {//cierra el flujo principal
+                    flwriter.close();
+                    System.exit( 0 );
+                 } catch (IOException e) {
+                      e.printStackTrace();
+                   }
+              }
+           }
+}    
+    public void cambiarArchivo(){
+       try {
+                flwriter = new FileWriter("C:\\BD\\CONTRATOS.txt",true);
+                flwriter.write(ncadena + "\n");
+                flwriter.close(); 
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {  
+          if (flwriter != null) {
+              try {
+                 flwriter.close();
+              } catch (IOException e) { 
+                    e.printStackTrace();  
+                }
+          }
+        }
+}
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -29,7 +102,7 @@ public class CONTRATO extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jt1 = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -37,9 +110,9 @@ public class CONTRATO extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jt1.setColumns(20);
+        jt1.setRows(5);
+        jScrollPane1.setViewportView(jt1);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 380, 260));
 
@@ -66,7 +139,12 @@ public class CONTRATO extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+registroArchivo();
+asignar();
+cambiarArchivo();
+Sedan flujo =new Sedan();
+flujo.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -113,6 +191,6 @@ public class CONTRATO extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    public static javax.swing.JTextArea jt1;
     // End of variables declaration//GEN-END:variables
 }

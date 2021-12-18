@@ -20,8 +20,8 @@ import javax.swing.JOptionPane;
  */
 public class Cliente extends javax.swing.JFrame {
 public static FileWriter flwriter = null; 
-   public static String username, passcompare;
-   public static char[] password; 
+   public static String yusername, ypasscompare, yname, ylicense;
+   public static char[] ypassword; 
    public static long pos = 0, linex=0;
 
     /**
@@ -38,15 +38,15 @@ public static FileWriter flwriter = null;
 
     }
     public void inicioSesion(){
-        username = jtfUser.getText();
-        password = jtfpwd.getPassword();
-        passcompare = String.valueOf(password);
+        yusername = jtfUser.getText();
+        ypassword = jtfpwd.getPassword();
+        ypasscompare = String.valueOf(ypassword);
 
     }
  public void buscoArchivo(){ 
         String xname ="", xlicense="", xage="", xusername="",xpassword="";
         try {  //crea el flujo para escribir en el archivo
-          File flwriter = new File("C:\\Users\\josep\\Desktop\\EQ05.txt");
+          File flwriter = new File("C:\\BD\\EQ05.txt");
           Scanner leer_archivo = null;
           leer_archivo = new Scanner(flwriter);
           while(leer_archivo.hasNextLine()){
@@ -59,10 +59,13 @@ public static FileWriter flwriter = null;
              xusername = delimitar.next();
              xpassword = delimitar.next();
              System.out.println(xname + "\t" + xage + "\t" + xlicense + "\t\t" + xusername + "\t" + xpassword);
-             if(username.equals(xusername) && passcompare.equals(xpassword)){
-                Sedan flujo= new Sedan();
+             if(yusername.equals(xusername) && ypasscompare.equals(xpassword)){
+                yname=xname;
+                ylicense=xlicense;
+                 Sedan flujo= new Sedan();
                 flujo.setVisible(true);
-                dispose();   
+                JOptionPane.showMessageDialog(null,"BIENVENIDO");
+                dispose();  
                  break;
              }
              if(!leer_archivo.hasNextLine()){

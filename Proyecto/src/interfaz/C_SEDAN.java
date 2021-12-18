@@ -5,12 +5,19 @@
  */
 package interfaz;
 import Fuentes.Moonglade;
+import java.io.File;
+import java.io.IOException;
+import java.util.Scanner;
+import javax.swing.JOptionPane;
+import java.io.FileWriter;
 /**
  *
  * @author Pc
  */
-public class C_SEDAN extends javax.swing.JFrame {
 
+public class C_SEDAN extends javax.swing.JFrame {
+public static FileWriter flwriter = null;
+public static String auto, ncadena="NOMBRE\tEDAD\tLICENCIA\tUSUARIO\n";
     /**
      * Creates new form C_SEDAN
      */
@@ -22,7 +29,39 @@ public class C_SEDAN extends javax.swing.JFrame {
         jlb2.setFont(tipoFuente.fuente(tipoFuente.MOON, 3, 25));
         this.setLocationRelativeTo(null);
     }
-
+public void buscoArchivo(){ 
+        String xname ="", xlicense="", xage="", xusername="",xauto="";
+        try {  //crea el flujo para escribir en el archivo
+          File flwriter = new File("C:\\BD\\CONTRATOS.txt");
+          Scanner leer_archivo = null;
+          leer_archivo = new Scanner(flwriter);
+          while(leer_archivo.hasNextLine()){
+             String Linea_archivo = leer_archivo.nextLine();
+             Scanner delimitar = new Scanner(Linea_archivo);
+             delimitar.useDelimiter("\\s*,\\s*");
+             xname = delimitar.next();
+             xage = delimitar.next();
+             xlicense = delimitar.next();
+             xusername = delimitar.next();
+             xauto = delimitar.next(); 
+             if(auto.equals(xauto)){
+                 ncadena=ncadena+xname+"\t"+xage+"\t"+xlicense+"\t"+xusername+"\n";
+                System.out.println(xname + "\t" + xage + "\t" + xlicense + "\t\t" + xusername + "\t" + xauto);
+             }
+          }
+       } catch (IOException e) {
+            e.printStackTrace();
+         } finally {  // consolida el cierre de archivo con transacciones
+              if (flwriter != null) {
+                 try {//cierra el flujo principal
+                    flwriter.close();
+                    System.exit( 0 );
+                 } catch (IOException e) {
+                      e.printStackTrace();
+                   }
+              }
+           }
+ }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,12 +73,13 @@ public class C_SEDAN extends javax.swing.JFrame {
 
         jtf1 = new javax.swing.JTextField();
         jbt1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jlb1 = new javax.swing.JLabel();
         jbt2 = new javax.swing.JButton();
         jlb2 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jta = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
+        jOptionPane1 = new javax.swing.JOptionPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -52,30 +92,12 @@ public class C_SEDAN extends javax.swing.JFrame {
         getContentPane().add(jtf1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 220, 30));
 
         jbt1.setText("CONSULTAR CONTRATOS");
-        getContentPane().add(jbt1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, -1, -1));
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "USUARIO", "NOMBRE", "NO. LICENCIA", "EDAD"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+        jbt1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbt1ActionPerformed(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 410, 90));
+        getContentPane().add(jbt1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, -1, -1));
 
         jlb1.setForeground(new java.awt.Color(255, 255, 255));
         jlb1.setText("MODELO");
@@ -90,11 +112,18 @@ public class C_SEDAN extends javax.swing.JFrame {
         getContentPane().add(jbt2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 330, -1, -1));
 
         jlb2.setForeground(new java.awt.Color(255, 255, 255));
-        jlb2.setText("CONTRATOS SEDAN");
-        getContentPane().add(jlb2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, -1, -1));
+        jlb2.setText("CONTRATOS");
+        getContentPane().add(jlb2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, -1, -1));
+
+        jta.setColumns(20);
+        jta.setRows(5);
+        jScrollPane2.setViewportView(jta);
+
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 400, 130));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo_2.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(jOptionPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -108,6 +137,12 @@ SEDAN_ADMIN flujo= new SEDAN_ADMIN();
 flujo.setVisible(true);
         dispose();
     }//GEN-LAST:event_jbt2ActionPerformed
+
+    private void jbt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbt1ActionPerformed
+auto=jtf1.getText();
+buscoArchivo();
+jta.setText(ncadena);
+    }//GEN-LAST:event_jbt1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -146,12 +181,13 @@ flujo.setVisible(true);
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JOptionPane jOptionPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton jbt1;
     private javax.swing.JButton jbt2;
     private javax.swing.JLabel jlb1;
     private javax.swing.JLabel jlb2;
+    private javax.swing.JTextArea jta;
     private javax.swing.JTextField jtf1;
     // End of variables declaration//GEN-END:variables
 }

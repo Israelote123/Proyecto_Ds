@@ -6,6 +6,8 @@
 package interfaz;
 
 import Fuentes.Moonglade;
+import static interfaz.Cliente.ylicense;
+import static interfaz.Cliente.yname;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
@@ -21,6 +23,7 @@ public class SUV extends javax.swing.JFrame {
     /**
      * Creates new form SUV
      */
+    public static String auto2, precio;
     Moonglade tipoFuente;
     public SUV() {
         initComponents();
@@ -160,6 +163,10 @@ Cliente flujo= new Cliente();
     private void jlbcompMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbcompMouseClicked
         CONTRATO flujo= new CONTRATO();
         flujo.setVisible(true);
+        auto2=jlb2.getText();
+        precio=jlb3.getText();
+        CONTRATO.jt1.setText("CONTRATO\n\n"+yname+"\n"+ylicense+"\n*****\n"+auto2+"\n*****\n"+precio);
+        CONTRATO.auto=auto2;
         dispose();
     }//GEN-LAST:event_jlbcompMouseClicked
 
@@ -184,6 +191,10 @@ Cliente flujo= new Cliente();
     private void jlbcomp1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbcomp1MouseClicked
         CONTRATO flujo= new CONTRATO();
         flujo.setVisible(true);
+        auto2=jlb4.getText();
+        precio=jlb3.getText();
+        CONTRATO.jt1.setText("CONTRATO\n\n"+yname+"\n"+ylicense+"\n*****\n"+auto2+"\n*****\n"+precio);
+        CONTRATO.auto=auto2;
         dispose();
     }//GEN-LAST:event_jlbcomp1MouseClicked
 

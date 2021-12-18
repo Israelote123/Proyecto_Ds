@@ -34,6 +34,7 @@ public class Registro extends javax.swing.JFrame {
    Moonglade tipoFuente;
     public Registro() {
         initComponents();
+        jop1.setVisible(false);
         tipoFuente= new Moonglade();
         jlb1.setFont(tipoFuente.fuente(tipoFuente.MOON, 3, 11));
         jlb2.setFont(tipoFuente.fuente(tipoFuente.MOON,3, 11));
@@ -65,7 +66,7 @@ public void limpiar(){
     public void registroArchivo(){
        String xname ="", xlicense="", xage="", xusername="",xpassword=""; 
         try {  //crea el flujo para escribir en el archivo
-          File flwriter = new File("C:\\Users\\josep\\Desktop\\EQ05.txt");
+          File flwriter = new File("C:\\BD\\EQ05.txt");
           Scanner leer_archivo = null;
           leer_archivo = new Scanner(flwriter);
           while(leer_archivo.hasNextLine()){
@@ -79,7 +80,8 @@ public void limpiar(){
              xpassword = delimitar.next();
              
              if(username.equals(xusername)){
-                 jOptionPane1.showMessageDialog(null, "Este usuario ya existe");
+                 jop1.showMessageDialog(null, "Este usuario ya existe");
+                 jop1.setVisible(true);
                  alreadyRegister = true;
                  break;
              }
@@ -99,7 +101,7 @@ public void limpiar(){
 }    
     public void cambiarArchivo(){
        try {
-                flwriter = new FileWriter("C:\\Users\\josep\\Desktop\\EQ05.txt",true);
+                flwriter = new FileWriter("C:\\BD\\EQ05.txt",true);
                 flwriter.write(ncadena + "\n");
                 flwriter.close(); 
             } catch (IOException e) {
@@ -142,7 +144,7 @@ public void limpiar(){
         jButton1 = new javax.swing.JButton();
         jTfPassword = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
-        jOptionPane1 = new javax.swing.JOptionPane();
+        jop1 = new javax.swing.JOptionPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -182,15 +184,16 @@ public void limpiar(){
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo_2.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 300));
-        getContentPane().add(jOptionPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, -1, -1));
+        getContentPane().add(jop1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-Cliente flujo= new Cliente();
+
+        Cliente flujo= new Cliente();
         flujo.setVisible(true);
-asignar();
+        asignar();
         registroArchivo();
         if(!alreadyRegister){
         cambiarArchivo();
@@ -198,8 +201,9 @@ asignar();
             limpiar();
             alreadyRegister = false;
         }
-        limpiar();  
-                dispose();
+        limpiar();          
+
+dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -240,7 +244,6 @@ asignar();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JTextField jTfAge;
     private javax.swing.JTextField jTfLicense;
     private javax.swing.JTextField jTfName;
@@ -251,6 +254,7 @@ asignar();
     private javax.swing.JLabel jlb3;
     private javax.swing.JLabel jlb4;
     private javax.swing.JLabel jlb5;
+    private javax.swing.JOptionPane jop1;
     // End of variables declaration//GEN-END:variables
 
 }

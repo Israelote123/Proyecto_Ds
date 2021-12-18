@@ -14,5 +14,9 @@ class jOptionPane1 {
     static void showMessageDialog(Object object, String este_usuario_ya_existela_aplicacion_se_ce, String error, int WARNING_MESSAGE) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    static void showMessageDialog(Object object, String este_usuario_ya_existe) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

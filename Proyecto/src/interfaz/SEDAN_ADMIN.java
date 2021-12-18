@@ -18,13 +18,14 @@ import java.util.Map;
  * @author Pc
  */
 public class SEDAN_ADMIN extends javax.swing.JFrame {
-
+public static int mes=12;
     /** Creates new form SEDAN_ADMIN */
     Moonglade tipoFuente;
     public SEDAN_ADMIN() {
         initComponents();
+        jop.setVisible(false);
         tipoFuente= new Moonglade();
-        jlb1.setFont(tipoFuente.fuente(tipoFuente.MOON, 3, 25));
+        jlb1.setFont(tipoFuente.fuente(tipoFuente.MOON,3, 25));
         jlb2.setFont(tipoFuente.fuente(tipoFuente.MOON,3, 11));
         jlb3.setFont(tipoFuente.fuente(tipoFuente.MOON,3, 11));
         jlbman.setFont(tipoFuente.fuente(tipoFuente.MOON,3, 11));
@@ -50,11 +51,11 @@ public class SEDAN_ADMIN extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jlbman = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jop = new javax.swing.JOptionPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -119,6 +120,7 @@ public class SEDAN_ADMIN extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo_2.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(jop, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, -1, -1));
 
         jMenu1.setText("MODELOS");
 
@@ -132,12 +134,14 @@ public class SEDAN_ADMIN extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("USUARIOS");
+        jMenu2.setText("REGISTROS");
 
-        jMenuItem2.setText("C_SEDAN");
-        jMenu2.add(jMenuItem2);
-
-        jMenuItem3.setText("C_SUV");
+        jMenuItem3.setText("CONTRATOS");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem3);
 
         jMenuBar1.add(jMenu2);
@@ -148,7 +152,7 @@ public class SEDAN_ADMIN extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jlbman1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbman1MouseClicked
-//FICHA
+jop.showMessageDialog(null, "LA PRÓXIMA FECHA DE MANTENIMIENTO DEL AUTO ES 01/0"+(mes-12+3)+"/2022");
     }//GEN-LAST:event_jlbman1MouseClicked
 
     private void jlbman1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbman1MouseEntered
@@ -176,7 +180,8 @@ public class SEDAN_ADMIN extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jlbmanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbmanMouseClicked
-//FICHA
+jop.showMessageDialog(null, "LA PRÓXIMA FECHA DE MANTENIMIENTO DEL AUTO ES 01/0"+(mes-12+3)+"/2022");
+jop.setVisible(true);
     }//GEN-LAST:event_jlbmanMouseClicked
 
     private void jlbmanMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbmanMouseEntered
@@ -202,6 +207,12 @@ public class SEDAN_ADMIN extends javax.swing.JFrame {
         flujo.setVisible(true);
         dispose();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+C_SEDAN flujo = new C_SEDAN();
+        flujo.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -247,13 +258,13 @@ public class SEDAN_ADMIN extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JLabel jlb1;
     private javax.swing.JLabel jlb2;
     private javax.swing.JLabel jlb3;
     private javax.swing.JLabel jlbman;
     private javax.swing.JLabel jlbman1;
+    private javax.swing.JOptionPane jop;
     // End of variables declaration//GEN-END:variables
 
 }

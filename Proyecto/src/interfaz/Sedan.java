@@ -6,6 +6,8 @@
 package interfaz;
 
 import Fuentes.Moonglade;
+import static interfaz.Cliente.ylicense;
+import static interfaz.Cliente.yname;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
@@ -21,7 +23,9 @@ public class Sedan extends javax.swing.JFrame {
     /**
      * Creates new form Sedan
      */
-Moonglade tipoFuente;    
+    public static String auto1, precio;
+Moonglade tipoFuente; 
+
     public Sedan() {
         initComponents();
         tipoFuente= new Moonglade();
@@ -64,7 +68,7 @@ Moonglade tipoFuente;
         jlb1.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
         jlb1.setForeground(new java.awt.Color(255, 255, 255));
         jlb1.setText("SEDAN");
-        getContentPane().add(jlb1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 250, 40));
+        getContentPane().add(jlb1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 200, 40));
 
         jButton1.setText("REGRESAR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -137,7 +141,7 @@ Moonglade tipoFuente;
         getContentPane().add(jlb3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo_2.jpg"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, -1));
 
         jMenu1.setText("MODELOS");
 
@@ -171,6 +175,10 @@ interfaz flujo= new interfaz();
     private void jlbcompMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbcompMouseClicked
 CONTRATO flujo= new CONTRATO();
         flujo.setVisible(true);
+        auto1=jlb2.getText();
+        precio=jlb3.getText();
+        CONTRATO.jt1.setText("CONTRATO\n\n"+yname+"\n"+ylicense+"\n*****\n"+auto1+"\n*****\n"+precio);
+        CONTRATO.auto=auto1;
         dispose();
     }//GEN-LAST:event_jlbcompMouseClicked
 
@@ -195,6 +203,10 @@ CONTRATO flujo= new CONTRATO();
     private void jlbcomp1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbcomp1MouseClicked
 CONTRATO flujo= new CONTRATO();
         flujo.setVisible(true);
+        auto1=jlb4.getText();
+        precio=jlb5.getText();
+        CONTRATO.jt1.setText("CONTRATO\n\n"+yname+"\n"+ylicense+"\n*****\n"+auto1+"\n*****\n"+precio);
+        CONTRATO.auto=auto1;
         dispose();
     }//GEN-LAST:event_jlbcomp1MouseClicked
 

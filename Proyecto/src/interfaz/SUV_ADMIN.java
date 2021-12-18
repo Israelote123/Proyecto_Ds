@@ -17,13 +17,14 @@ import java.util.Map;
  * @author Pc
  */
 public class SUV_ADMIN extends javax.swing.JFrame {
-
+public static int mes=12;
     /**
      * Creates new form SUC_ADMIN
      */
     Moonglade tipoFuente;
     public SUV_ADMIN() {
         initComponents();
+        jop.setVisible(false);
         tipoFuente= new Moonglade();
         jlb1.setFont(tipoFuente.fuente(tipoFuente.MOON, 3, 25));
         jlb2.setFont(tipoFuente.fuente(tipoFuente.MOON,3, 11));
@@ -51,6 +52,7 @@ public class SUV_ADMIN extends javax.swing.JFrame {
         jlb2 = new javax.swing.JLabel();
         jlb3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jop = new javax.swing.JOptionPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -120,6 +122,7 @@ public class SUV_ADMIN extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo_2.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(jop, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, -1, -1));
 
         jMenu1.setText("MODELOS");
 
@@ -155,7 +158,8 @@ SEDAN_ADMIN flujo = new SEDAN_ADMIN();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jlbman1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbman1MouseClicked
-//FICHA
+jop.showMessageDialog(null, "LA PRÓXIMA FECHA DE MANTENIMIENTO DEL AUTO ES 01/0"+(mes-12+3)+"/2022");
+jop.setVisible(true);
     }//GEN-LAST:event_jlbman1MouseClicked
 
     private void jlbman1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbman1MouseEntered
@@ -177,7 +181,8 @@ SEDAN_ADMIN flujo = new SEDAN_ADMIN();
     }//GEN-LAST:event_jlbman1MouseExited
 
     private void jlbmanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbmanMouseClicked
-//FICHA
+jop.showMessageDialog(null, "LA PRÓXIMA FECHA DE MANTENIMIENTO DEL AUTO ES 01/0"+(mes-12+3)+"/2022");
+jop.setVisible(true);
     }//GEN-LAST:event_jlbmanMouseClicked
 
     private void jlbmanMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbmanMouseEntered
@@ -256,5 +261,6 @@ Administrador flujo= new Administrador();
     private javax.swing.JLabel jlb3;
     private javax.swing.JLabel jlbman;
     private javax.swing.JLabel jlbman1;
+    private javax.swing.JOptionPane jop;
     // End of variables declaration//GEN-END:variables
 }
